@@ -1,0 +1,83 @@
+
+Q1. Explain GET and POST methods.
+GET and POST are two common HTTP methods used in web communication. They define the way data is sent and received between a client (e.g., a web browser) and a server.
+
+GET Method:
+
+The GET method is used to retrieve or fetch data from a server.
+When a client sends a GET request, the parameters and data are appended to the URL as query parameters.
+GET requests are typically used to retrieve information from a server without modifying or altering it.
+It is a safe and idempotent method, meaning it should not have any side effects on the server.
+GET requests can be cached by browsers, and the response can be bookmarked or shared.
+POST Method:
+
+The POST method is used to submit or send data to the server.
+When a client sends a POST request, the data is sent in the body of the request, separate from the URL.
+POST requests are used to create, update, or modify data on the server.
+It is not a safe or idempotent method since multiple identical POST requests may have different outcomes.
+POST requests are not cached by browsers, and the response should not be bookmarked or shared.
+Q2. Why is request used in Flask?
+The request object in Flask is used to handle incoming HTTP requests made to the Flask application. It provides access to the data and information sent by the client (e.g., web browser) in the request, such as form data, query parameters, headers, cookies, and more.
+
+The request object allows developers to extract and utilize the data from the request to make decisions, process the data, and generate appropriate responses. It provides several methods and attributes to access different parts of the request, including:
+
+request.form - A dictionary-like object containing the form data submitted in a POST request.
+request.args - A dictionary-like object containing the query parameters from the URL.
+request.headers - A dictionary-like object containing the headers sent with the request.
+request.cookies - A dictionary-like object containing the cookies sent with the request.
+request.method - The HTTP method used in the request (e.g., GET, POST, PUT, DELETE).
+request.path - The path portion of the URL.
+request.files - A dictionary-like object containing uploaded files from a POST request.
+By accessing the request object, developers can handle and process the incoming data, validate user input, authenticate users, and perform various operations based on the specifics of the request. It allows Flask applications to interact with and respond to client requests effectively.
+
+Q3. Why is redirect() used in Flask?
+The redirect() function in Flask is used to redirect the client's web browser to a different URL. It is primarily used to perform a server-side redirect, where the Flask application instructs the client to navigate to a different page.
+
+There are several scenarios where redirect() is commonly used:
+
+After a form submission: When a user submits a form, the server-side code may process the form data and then redirect the user to a different page, such as a success message or a different section of the website.
+
+Authentication and authorization: When a user tries to access a restricted resource without proper authentication or authorization, the server can redirect them to a login page or an access denied page.
+
+URL manipulation: If a user accesses a URL that has changed or is no longer valid, the server can redirect them to the correct or updated URL.
+
+Dynamic routing: In some cases, the server may dynamically generate URLs and redirect the user to the appropriate URL based on certain conditions or parameters.
+
+The redirect() function takes a URL as an argument and returns a response object with a redirect status code (HTTP 302). When the client receives this response, it automatically sends a new request to the specified URL, resulting in the browser navigating to the new page.
+
+By using redirect() in Flask, developers can guide users to the appropriate pages, provide feedback after form submissions, handle authentication and authorization flows, and manage URL changes or redirects efficiently.
+
+Q4. What are templates in Flask? Why is the render_template() function used?
+Templates in Flask are files that contain HTML markup with placeholders for dynamic content. They provide a way to separate the presentation logic from the application logic in Flask web applications. By using templates, developers can create dynamic web pages that can be easily customized and rendered with data from the Flask application.
+
+The render_template() function is used to render a template in Flask. It takes the name of the template file as an argument and returns the rendered HTML content as a response. The render_template() function performs the following tasks:
+
+Locating the template file: It searches for the specified template file in the templates directory of the Flask application. By default, Flask automatically looks for templates in a folder named "templates" in the application's root directory.
+
+Rendering the template: It processes the template file, replaces the placeholders with the provided data, and generates the final HTML content.
+
+Returning the response: It returns the rendered HTML content as a response to the client's web browser.
+
+The render_template() function is essential because it allows developers to dynamically generate HTML content by combining static HTML markup with dynamic data from the Flask application. It enables the creation of dynamic web pages that can display different content based on user input, database queries, or any other application logic.
+
+By using templates and the render_template() function, developers can achieve better separation of concerns, improve code maintainability, and enhance the overall development experience in Flask web applications.
+
+Q5. Create a simple API. Use Postman to test it. Attach the screenshot of the output in the Jupyter Notebook.
+
+from flask import Flask,json
+
+
+app = Flask(__name__)
+
+
+@app.route('/')
+def get_data():
+    data = {'name': 'John', 'age': 25}
+    return json.jsonify(data)
+
+if __name__=="__main__":
+    app.run(host="0.0.0.0")
+    
+
+     
+SS3
